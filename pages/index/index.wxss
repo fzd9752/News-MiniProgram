@@ -48,14 +48,14 @@
 
 .news-text {
   flex-grow: 2;
+  padding-right: 20rpx;
 }
 
 .news-title {
-  padding-right: 60rpx;
   opacity: 0.8;
-  font-size: 35rpx;
-  line-height: 49rpx;
-  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  line-height: 45rpx;
+  margin-bottom: 15rpx;
 }
 
 .news-sourcetime {
@@ -67,5 +67,5 @@
 .news-image {
   flex-grow: 1;
   height: 150rpx;
-  width: 200rpx;
+  width: 265rpx;
 }

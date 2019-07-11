@@ -8,6 +8,7 @@
 </scroll-view>
 
 <scroll-view scroll-y>
+  <view class='news-hot'>hothothot</view>
   <view class='news-list'>
     <view class="news-item" wx:for="{{news}}">
       <view class='news-text'>

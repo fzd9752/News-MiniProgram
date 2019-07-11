@@ -61,7 +61,7 @@ Page({
         id: result[i].id,
         title: result[i].title,
         firstImage: result[i].firstImage,
-        sourcetime: result[i].source + "  " + `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+        sourcetime: result[i].source + "  " + `${("0" + date.getHours()).slice(-2)}:${("0"+date.getMinutes()).slice(-2)}`
       })
     } 
     this.setData ({
