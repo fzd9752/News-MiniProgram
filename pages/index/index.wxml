@@ -1,0 +1,15 @@
+<!--index.wxml-->
+
+<!-- news tabBar -->
+<scroll-view scroll-x>
+<view class='tabBar'>
+  <view data-idx="{{index}}" class="tabBar-list {{currentTab==index ? 'active' : ''}}" wx:for="{{typeList}}" wx:key='unique' bindtap='tabBarTap'>{{item}}</view>
+</view>
+</scroll-view>
+
+<view class="container">
+  
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
