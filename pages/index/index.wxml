@@ -7,9 +7,14 @@
 </view>
 </scroll-view>
 
-<view class="container">
-  
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<scroll-view scroll-y>
+  <view class='news-list'>
+    <view class="news-item" wx:for="{{news}}">
+      <view class='news-text'>
+        <view class='news-title'>{{item.title}}</view>
+        <view class='news-sourcetime'>{{item.sourcetime}}</view>
+      </view>
+      <image class='news-image' src='{{item.firstImage}}'></image>
   </view>
 </view>
+</scroll-view>

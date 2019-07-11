@@ -15,12 +15,13 @@ Page({
     typeList: ["国内", "国际", "财经", "娱乐", "军事", "体育", "其他"],
     currentTab: 0,
     type: "gn",
-    motto: 'Hello World',
+    news: [1 , 2, 3],
   },
   
   //事件处理函数
   onLoad: function () {
     console.log('Load index page.')
+    this.getNewsList()
 
   },
 
@@ -32,5 +33,41 @@ Page({
       type: types[cn]
     })
     console.log(this.data.type)
+    this.getNewsList()
+  },
+
+  getNewsList(callback) {
+    wx.request({
+      url: "https://test-miniprogram.com/api/news/list",
+      data: {
+        type: this.data.type
+      },
+      success: res => {
+        let result = res.data.result
+        console.log(result)
+        this.setNewsList(result)
+      },
+      complete: () => {
+        callback && callback()
+      }
+    })
+  },
+
+  setNewsList(result) {
+    let news = []
+    for (let i = 0; i < result.length; i += 1) {
+      let date = new Date(Date.parse(result[i].date))
+      news.push({
+        id: result[i].id,
+        title: result[i].title,
+        firstImage: result[i].firstImage,
+        sourcetime: result[i].source + "  " + `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+      })
+    } 
+    this.setData ({
+      news: news
+    })
   }
 })
+
+

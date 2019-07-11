@@ -14,7 +14,8 @@
   font-size: 30rpx;
   line-height: 42rpx;
   color: white;
-  margin-bottom: 10rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .active{
@@ -33,7 +34,38 @@
   background: white;
 }
 
+.news-list {
 
-.usermotto {
-  margin-top: 200px;
+}
+
+.news-item {
+  display: flex;
+  align-items: center;
+  height: 200rpx;
+  margin: 0 40rpx;
+  border-bottom: 1px solid rgba(0,0,0, 0.1);
+}
+
+.news-text {
+  flex-grow: 2;
+}
+
+.news-title {
+  padding-right: 60rpx;
+  opacity: 0.8;
+  font-size: 35rpx;
+  line-height: 49rpx;
+  margin-bottom: 10rpx;
+}
+
+.news-sourcetime {
+  opacity: 0.5;
+  font-size: 25rpx;
+  line-height: 35rpx;
+}
+
+.news-image {
+  flex-grow: 1;
+  height: 150rpx;
+  width: 200rpx;
 }
