@@ -34,9 +34,46 @@
   background: white;
 }
 
-.news-list {
-
+.news-hot {
+  position: relative;
+  margin: 20rpx 40rpx;
+  height: 400rpx; 
+  background-repeat:no-repeat;
+  background-size: 100%;
 }
+
+.hot-icon {
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  padding: 5rpx 10rpx;
+  color: white;
+  background-color: rgba(255, 0, 0, 0.8);
+  border-radius: 0 0 0 25rpx;
+  font-size: 25rpx;
+  line-height: 32rpx;
+}
+
+.hot-text {
+  position: absolute;
+  bottom: 0;
+  padding: 15rpx 30rpx;
+  background:rgba(0,0,0, 0.4);
+}
+
+.hot-title {
+  font-size: 35rpx;
+  line-height: 49rpx;
+  color: white;
+  font-weight: bold;
+}
+
+.hot-sourcetime {
+  color: whitesmoke;
+  font-size: 25rpx;
+  line-height: 35rpx;
+}
+
 
 .news-item {
   display: flex;

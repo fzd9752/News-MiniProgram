@@ -1,6 +1,6 @@
 <!--index.wxml-->
 
-<!-- news tabBar -->
+<!-- News tabBar -->
 <scroll-view scroll-x>
 <view class='tabBar'>
   <view data-idx="{{index}}" class="tabBar-list {{currentTab==index ? 'active' : ''}}" wx:for="{{typeList}}" wx:key='unique' bindtap='tabBarTap'>{{item}}</view>
@@ -8,7 +8,15 @@
 </scroll-view>
 
 <scroll-view scroll-y>
-  <view class='news-hot'>hothothot</view>
+  <!-- First hot news -->
+  <view class='news-hot' style="background-image:url('{{hotimage}}')">
+    <span class="hot-icon">热点</span>
+    <view class='hot-text'>
+      <view class='hot-title'>{{hottitle}}</view>
+      <view class='hot-sourcetime'>{{hotsourcetime}}</view> 
+    </view>
+  </view>
+  <!-- News list by type -->
   <view class='news-list'>
     <view class="news-item" wx:for="{{news}}">
       <view class='news-text'>

@@ -16,6 +16,10 @@ Page({
     currentTab: 0,
     type: "gn",
     news: [1 , 2, 3],
+    hotimage: "",
+    hottitle: "",
+    hotsourcetime: "",
+    hotid:"",
   },
   
   //事件处理函数
@@ -65,7 +69,11 @@ Page({
       })
     } 
     this.setData ({
-      news: news
+      hotimage: news[0].firstImage,
+      hottitle: news[0].title,
+      hotsourcetime: news[0].sourcetime,
+      hotid: news[0].id,
+      news: news.slice(1)
     })
   }
 })
