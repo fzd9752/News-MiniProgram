@@ -39,7 +39,7 @@
   margin: 20rpx 40rpx;
   height: 400rpx; 
   background-repeat:no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 
 .hot-icon {
@@ -103,6 +103,6 @@
 
 .news-image {
   flex-grow: 1;
-  height: 150rpx;
+  height: 80%;
   width: 265rpx;
 }

@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-    id: 1552623252486,
+    id: "",
     title: "",
     sourcetime: "",
     readCnt: "",
@@ -16,9 +16,9 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad (options) {
-    // this.setData({
-    //   id: options.id,
-    // })
+    this.setData({
+      id: options.id,
+    })
     // console.log(this.data.id)
     this.getDetail()
   },
@@ -48,7 +48,7 @@ Page({
   },
 
   setDetail (result) {
-    console.log(result)
+    // console.log(result)
     let date = new Date(Date.parse(result.date))
     let detail = []
     let content = result.content

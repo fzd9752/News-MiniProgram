@@ -23,7 +23,7 @@
         <view class='news-title'>{{item.title}}</view>
         <view class='news-sourcetime'>{{item.sourcetime}}</view>
       </view>
-      <image class='news-image' src='{{item.firstImage}}'></image>
+      <image class='news-image' src='{{item.firstImage}}' mode="heightFix"></image>
   </view>
 </view>
 </scroll-view>

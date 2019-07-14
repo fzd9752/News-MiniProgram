@@ -1,18 +1,13 @@
-<!--    title: "",
-    image: "",
-    sourcetime: "",
-    readCnt: "",
-    content: [],-->
 <scroll-view scroll-y>
 <view class='container'>
+  <view class='title'>{{title}}</view>
   <view class='text'>
-    <view class='title'>{{title}}</view>
     <view class='sourcetime'>{{sourcetime}}</view>
     <span class='readCnt'>{{readCNT}}</span>
   </view>
   <view class='content'>
     <view class="detail" wx:for="{{content}}">
-      <image wx:if='{{item.type==="image"}}' class="image" src='{{item.p}}'></image>
+      <image wx:if='{{item.type==="image"}}' class="image" src='{{item.p}}' alt='image' mode="widthFix"></image>
       <view wx:if='{{item.type==="p"}}' class="p">{{item.p}}</view>
     </view>
   </view>
