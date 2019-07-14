@@ -19,7 +19,7 @@ Page({
     hotimage: "",
     hottitle: "",
     hotsourcetime: "",
-    hotid:"",
+    hotid: 0,
   },
   
   //事件处理函数
@@ -87,6 +87,8 @@ Page({
   },
 
   navigateDetail (id) {
+    // console.log("navigate to news")
+    // console.log(id)
     wx.navigateTo({
       url: '/pages/news/news?id=' + id
     })

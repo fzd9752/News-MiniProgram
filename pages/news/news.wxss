@@ -1,1 +1,32 @@
 /* pages/news/news.wxss */
+.container {
+
+}
+
+.text {
+
+}
+
+.title {
+
+}
+
+.sourcetime {
+
+}
+
+.readCnt {
+
+}
+
+.detail {
+
+}
+
+.image {
+
+}
+
+.p {
+
+}
