@@ -1,5 +1,6 @@
 <!--index.wxml-->
 
+<view class="container" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
 <!-- News tabBar -->
 <scroll-view scroll-x>
 <view class='tabBar'>
@@ -27,3 +28,5 @@
   </view>
 </view>
 </scroll-view>
+
+</view>

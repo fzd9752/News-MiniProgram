@@ -10,6 +10,13 @@ const types = {
   "体育": "ty",
   "其他": "other"
 }
+// swiper to change typebar
+var touchDot = 0;
+var time = 0;
+var interval = "";
+var nthMax = 6;
+var tmpFlag = true;
+
 Page({
   data: {
     typeList: ["国内", "国际", "财经", "娱乐", "军事", "体育", "其他"],
@@ -53,6 +60,12 @@ Page({
       },
       complete: () => {
         callback && callback()
+      },
+      fail: () => {
+        // console.log('server fail')
+        wx.showToast({
+          title: '服务器走失，请下拉刷新',
+        })
       }
     })
   },
@@ -101,8 +114,50 @@ Page({
       // console.log('stop refresh')
     })
   },
-    
-  
+
+  // functions to execute swipper
+  touchStart (e) {
+    touchDot = e.touches[0].pageX; 
+    interval = setInterval(function () {
+      time++;
+    }, 100);
+  },
+
+  touchMove (e) {
+    var touchMove = e.touches[0].pageX;
+    console.log("touchMove:" + touchMove + " touchDot:" + touchDot + " diff:" + (touchMove - touchDot));
+    // to left   
+    if (touchMove - touchDot <= -40 && time < 10) {
+      let idx = this.data.currentTab
+      if (tmpFlag && idx < nthMax) {
+        tmpFlag = false
+        let cn = this.data.typeList[idx+1]
+        this.setData({
+          currentTab: idx + 1,
+          type: types[cn]
+        })
+        this.getNewsList()  
+      }
+    }
+    if (touchMove - touchDot >= 40 && time < 10) {
+      let idx = this.data.currentTab
+      if (tmpFlag && idx > 0) {
+        tmpFlag = false
+        let cn = this.data.typeList[idx - 1]
+        this.setData({
+          currentTab: idx - 1,
+          type: types[cn]
+        })
+        this.getNewsList()
+      }
+    }
+  },
+  touchEnd (e) {
+    console.log('touch end')
+    clearInterval(interval);  
+    time = 0;
+    tmpFlag = true; 
+  },
 })
 
 

@@ -1,4 +1,14 @@
 // pages/news/news.js
+
+// swiper to change typebar
+var touchDot = 0;
+var time = 0;
+var interval = "";
+var nth = 0;
+var nthMax = 5;
+var tmpFlag = true;
+
+
 Page({
 
   /**
@@ -43,6 +53,12 @@ Page({
       },
       complete: () => {
         callback && callback()
+      },
+      fail: () => {
+        // console.log('server fail')
+        wx.showToast({
+          title: '服务器走失，请下拉刷新',
+        })
       }
     })
   },
@@ -72,5 +88,9 @@ Page({
       content: detail,
     })
     // console.log(this.data.content)
-  }
+  },
+
+  // functions to execute swipper
+  
+
 })
