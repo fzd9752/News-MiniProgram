@@ -9,7 +9,7 @@
 
 <scroll-view scroll-y>
   <!-- First hot news -->
-  <view class='news-hot' style="background-image:url('{{hotimage}}')">
+  <view class='news-hot' style="background-image:url('{{hotimage}}')" bindtap='onTapReadHotID'>
     <span class="hot-icon">热点</span>
     <view class='hot-text'>
       <view class='hot-title'>{{hottitle}}</view>
@@ -18,7 +18,7 @@
   </view>
   <!-- News list by type -->
   <view class='news-list'>
-    <view class="news-item" wx:for="{{news}}">
+    <view class="news-item" wx:for="{{news}}" data-id='{{item.id}}' bindtap='onTapReadID'>
       <view class='news-text'>
         <view class='news-title'>{{item.title}}</view>
         <view class='news-sourcetime'>{{item.sourcetime}}</view>

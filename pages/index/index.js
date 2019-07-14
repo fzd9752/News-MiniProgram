@@ -36,7 +36,7 @@ Page({
       currentTab: idx,
       type: types[cn]
     })
-    console.log(this.data.type)
+    //console.log(this.data.type)
     this.getNewsList()
   },
 
@@ -75,7 +75,25 @@ Page({
       hotid: news[0].id,
       news: news.slice(1)
     })
+  },
+
+  onTapReadHotID () {
+    this.navigateDetail(this.data.hotid)
+  },
+
+
+  onTapReadID (e) {
+    console.log(e.currentTarget.dataset.id)
+    this.navigateDetail(e.currentTarget.dataset.id)
+  },
+
+  navigateDetail (id) {
+    wx.navigateTo({
+      url: '/pages/news/news?id=' + id
+    })
   }
+    
+  
 })
 
 
