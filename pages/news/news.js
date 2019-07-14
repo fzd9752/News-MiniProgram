@@ -16,10 +16,12 @@ Page({
    */
   data: {
     id: "",
+    ids: [],
     title: "",
     sourcetime: "",
     readCnt: "",
     content: [],
+
   },
 
   /**
@@ -27,9 +29,12 @@ Page({
    */
   onLoad (options) {
     this.setData({
-      id: options.id,
+      id: parseInt(options.id),
+      ids: options.ids.split(',').map(Number),
     })
-    // console.log(this.data.id)
+    nth = this.data.ids.indexOf(this.data.id)
+    nthMax = this.data.ids.length
+    console.log(this.data.ids)
     this.getDetail()
   },
 
@@ -91,6 +96,72 @@ Page({
   },
 
   // functions to execute swipper
-  
+  touchStart(e) {
+    touchDot = e.touches[0].pageX;
+    interval = setInterval(function () {
+      time++;
+    }, 100);
+  },
 
-})
+  touchMove(e) {
+    var touchMove = e.touches[0].pageX;
+    console.log("touchMove:" + touchMove + " touchDot:" + touchDot + " diff:" + (touchMove - touchDot) + " time: " + time);
+
+    // to left  
+    if (touchMove - touchDot <= -40 && time < 40) {
+      console.log('start swiper')
+      let idx = (nth + 1) % nthMax
+      console.log(idx)
+      console.log(nth)
+      if (tmpFlag) {
+        tmpFlag = false
+        this.setData({
+          id: this.data.ids[idx],
+        })
+        
+        nth = idx
+        this.getDetail(() => {
+          wx.showToast({
+            title: '下一篇',
+          })
+        })
+        console.log(this.data.id)
+        console.log(nth)
+      }
+    }
+    if (touchMove - touchDot >= 40 && time < 40) {
+      console.log('start swiper')
+      let idx = (Math.abs(nth + nthMax - 1)) % nthMax
+      console.log(idx)
+      console.log(nth)
+      if (tmpFlag) {
+        tmpFlag = false
+        this.setData({
+          id: this.data.ids[idx],
+        })
+        nth = idx
+        this.getDetail(() => {
+          wx.showToast({
+            title: '上一篇',
+          })
+        })
+      }
+    }
+  },
+  touchEnd(e) {
+    console.log('touch end')
+    clearInterval(interval);
+    time = 0;
+    tmpFlag = true;
+  },
+}) 
+
+// onLoad(options) {
+//   this.setData({
+//     id: parseInt(options.id),
+//     ids: options.ids.split(',').map(Number),
+//   })
+//   nth = this.data.ids.indexOf(this.data.id)
+//   nthMax = this.data.ids.length
+//   this.getDetail()
+// },

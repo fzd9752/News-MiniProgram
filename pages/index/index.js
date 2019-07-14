@@ -27,6 +27,7 @@ Page({
     hottitle: "",
     hotsourcetime: "",
     hotid: 0,
+    ids: [],
   },
   
   //事件处理函数
@@ -72,8 +73,10 @@ Page({
 
   setNewsList(result) {
     let news = []
+    let ids = []
     for (let i = 0; i < result.length; i += 1) {
       let date = new Date(Date.parse(result[i].date))
+      ids.push(result[i].id)
       news.push({
         id: result[i].id,
         title: result[i].title,
@@ -86,9 +89,12 @@ Page({
       hottitle: news[0].title,
       hotsourcetime: news[0].sourcetime,
       hotid: news[0].id,
-      news: news.slice(1)
+      news: news.slice(1),
+      ids: ids
     })
+    // console.log(this.data.ids)
   },
+
 
   onTapReadHotID () {
     this.navigateDetail(this.data.hotid)
@@ -103,7 +109,7 @@ Page({
     // console.log("navigate to news")
     // console.log(id)
     wx.navigateTo({
-      url: '/pages/news/news?id=' + id
+      url: '/pages/news/news?id='+id+"&ids="+this.data.ids
     })
   },
 
@@ -129,7 +135,7 @@ Page({
     
      
     // to left  
-    if (touchMove - touchDot <= -40 && time < 10) {
+    if (touchMove - touchDot <= -40 && time < 20) {
       let idx = (this.data.currentTab + 1) % nthMax
       if (tmpFlag) {
         tmpFlag = false
@@ -141,17 +147,15 @@ Page({
         this.getNewsList()  
       }
     }
-    if (touchMove - touchDot >= 40 && time < 10) {
+    if (touchMove - touchDot >= 40 && time < 20) {
       let idx =(Math.abs(this.data.currentTab + 7 - 1)) % nthMax
       if (tmpFlag) {
         tmpFlag = false
-        console.log(idx)
         let cn = this.data.typeList[idx]
         this.setData({
           currentTab: idx,
           type: types[cn]
         })
-        console.log(this.data.currentTab)
         this.getNewsList()
       }
     }

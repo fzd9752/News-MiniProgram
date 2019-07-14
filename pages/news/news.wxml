@@ -1,5 +1,5 @@
 <scroll-view scroll-y>
-<view class='container'>
+<view class='container' bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
   <view class='title'>{{title}}</view>
   <view class='text'>
     <view class='sourcetime'>{{sourcetime}}</view>
