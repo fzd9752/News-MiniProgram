@@ -34,12 +34,12 @@ Page({
     })
     nth = this.data.ids.indexOf(this.data.id)
     nthMax = this.data.ids.length
-    console.log(this.data.ids)
+    // console.log(this.data.ids)
     this.getDetail()
   },
 
   onPullDownRefresh() {
-    console.log("refresh executed!")
+    // console.log("refresh executed!")
     this.getDetail(() => {
       wx.stopPullDownRefresh()
       // console.log('stop refresh')
@@ -71,21 +71,28 @@ Page({
   setDetail (result) {
     // console.log(result)
     let date = new Date(Date.parse(result.date))
-    let detail = []
     let content = result.content
-    for (let i = 0; i < content.length; i += 1) {  
-      if (content[i].type==="p")
-        detail.push({
-          type: content[i].type,
-          p: content[i].text
-        })
-      else
-        detail.push({
-          type: content[i].type,
-          p: content[i].src
-        })
-           
-    }
+    let detail = []
+    if (content.length > 0) 
+      
+      for (let i = 0; i < content.length; i += 1) {  
+        if (content[i].type==="image")
+          detail.push({
+            type: content[i].type,
+            p: content[i].src
+          })
+        else
+          detail.push({
+            type: "p",
+            p: content[i].text
+          })
+      }
+    else 
+      detail.push({
+        type: "image",
+        p: result.firstImage
+      })
+    
     this.setData({
       title: result.title,
       sourcetime: result.source + "  " + `${("0" + date.getHours()).slice(-2)}:${("0" + date.getMinutes()).slice(-2)}`,
@@ -105,14 +112,11 @@ Page({
 
   touchMove(e) {
     var touchMove = e.touches[0].pageX;
-    console.log("touchMove:" + touchMove + " touchDot:" + touchDot + " diff:" + (touchMove - touchDot) + " time: " + time);
+    // console.log("touchMove:" + touchMove + " touchDot:" + touchDot + " diff:" + (touchMove - touchDot) + " time: " + time);
 
     // to left  
     if (touchMove - touchDot <= -40 && time < 40) {
-      console.log('start swiper')
       let idx = (nth + 1) % nthMax
-      console.log(idx)
-      console.log(nth)
       if (tmpFlag) {
         tmpFlag = false
         this.setData({
@@ -125,15 +129,10 @@ Page({
             title: '下一篇',
           })
         })
-        console.log(this.data.id)
-        console.log(nth)
       }
     }
     if (touchMove - touchDot >= 40 && time < 40) {
-      console.log('start swiper')
       let idx = (Math.abs(nth + nthMax - 1)) % nthMax
-      console.log(idx)
-      console.log(nth)
       if (tmpFlag) {
         tmpFlag = false
         this.setData({
@@ -149,7 +148,7 @@ Page({
     }
   },
   touchEnd(e) {
-    console.log('touch end')
+    // console.log('touch end')
     clearInterval(interval);
     time = 0;
     tmpFlag = true;

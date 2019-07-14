@@ -32,7 +32,7 @@ Page({
   
   //事件处理函数
   onLoad: function () {
-    console.log('Load index page.')
+    // console.log('Load index page.')
     this.getNewsList()
 
   },
@@ -114,7 +114,7 @@ Page({
   },
 
   onPullDownRefresh () {
-    console.log("refresh executed!")
+    // console.log("refresh executed!")
     this.getNewsList(() => {
       wx.stopPullDownRefresh()
       // console.log('stop refresh')
@@ -131,11 +131,11 @@ Page({
 
   touchMove (e) {
     var touchMove = e.touches[0].pageX;
-    console.log("touchMove:" + touchMove + " touchDot:" + touchDot + " diff:" + (touchMove - touchDot));
+    // console.log("touchMove:" + touchMove + " touchDot:" + touchDot + " diff:" + (touchMove - touchDot));
     
      
     // to left  
-    if (touchMove - touchDot <= -40 && time < 20) {
+    if (touchMove - touchDot <= -40 && time < 10) {
       let idx = (this.data.currentTab + 1) % nthMax
       if (tmpFlag) {
         tmpFlag = false
@@ -147,7 +147,7 @@ Page({
         this.getNewsList()  
       }
     }
-    if (touchMove - touchDot >= 40 && time < 20) {
+    if (touchMove - touchDot >= 40 && time < 10) {
       let idx =(Math.abs(this.data.currentTab + 7 - 1)) % nthMax
       if (tmpFlag) {
         tmpFlag = false
@@ -161,7 +161,7 @@ Page({
     }
   },
   touchEnd (e) {
-    console.log('touch end')
+    // console.log('touch end')
     clearInterval(interval);  
     time = 0;
     tmpFlag = true; 

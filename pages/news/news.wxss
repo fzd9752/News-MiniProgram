@@ -23,17 +23,17 @@
   margin-bottom: 30rpx;
 }
 
-.sourcetime {
-
-}
-
 .readCnt {
  position: absolute;
  right: 0;
 }
 
-.detail {
+.content {
   position: relative;
+  width: 100%;
+}
+
+.detail {
   margin: 10rpx 0;
   font-size: 30rpx;
   line-height: 50rpx;
