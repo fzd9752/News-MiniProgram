@@ -14,7 +14,7 @@ const types = {
 var touchDot = 0;
 var time = 0;
 var interval = "";
-var nthMax = 6;
+var nthMax = 7;
 var tmpFlag = true;
 
 Page({
@@ -126,28 +126,32 @@ Page({
   touchMove (e) {
     var touchMove = e.touches[0].pageX;
     console.log("touchMove:" + touchMove + " touchDot:" + touchDot + " diff:" + (touchMove - touchDot));
-    // to left   
+    
+     
+    // to left  
     if (touchMove - touchDot <= -40 && time < 10) {
-      let idx = this.data.currentTab
-      if (tmpFlag && idx < nthMax) {
+      let idx = (this.data.currentTab + 1) % nthMax
+      if (tmpFlag) {
         tmpFlag = false
-        let cn = this.data.typeList[idx+1]
+        let cn = this.data.typeList[idx]
         this.setData({
-          currentTab: idx + 1,
+          currentTab: idx,
           type: types[cn]
         })
         this.getNewsList()  
       }
     }
     if (touchMove - touchDot >= 40 && time < 10) {
-      let idx = this.data.currentTab
-      if (tmpFlag && idx > 0) {
+      let idx =(Math.abs(this.data.currentTab + 7 - 1)) % nthMax
+      if (tmpFlag) {
         tmpFlag = false
-        let cn = this.data.typeList[idx - 1]
+        console.log(idx)
+        let cn = this.data.typeList[idx]
         this.setData({
-          currentTab: idx - 1,
+          currentTab: idx,
           type: types[cn]
         })
+        console.log(this.data.currentTab)
         this.getNewsList()
       }
     }
