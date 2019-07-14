@@ -48,7 +48,7 @@ Page({
       },
       success: res => {
         let result = res.data.result
-        console.log(result)
+        // console.log(result)
         this.setNewsList(result)
       },
       complete: () => {
@@ -81,9 +81,8 @@ Page({
     this.navigateDetail(this.data.hotid)
   },
 
-
   onTapReadID (e) {
-    console.log(e.currentTarget.dataset.id)
+    // console.log(e.currentTarget.dataset.id)
     this.navigateDetail(e.currentTarget.dataset.id)
   },
 
@@ -91,7 +90,15 @@ Page({
     wx.navigateTo({
       url: '/pages/news/news?id=' + id
     })
-  }
+  },
+
+  onPullDownRefresh () {
+    console.log("refresh executed!")
+    this.getNewsList(() => {
+      wx.stopPullDownRefresh()
+      // console.log('stop refresh')
+    })
+  },
     
   
 })
